@@ -51,7 +51,7 @@ export default function Addtraining(props) {
          <Button style={{margin: '10px'}} variant="outlined" onClick={handleClickOpen}>
             Add Training
          </Button>
-         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+         <Dialog open={open} onClose={handleClose}>
             <DialogTitle >New Training</DialogTitle>
             <DialogContent>
                <MuiPickersUtilsProvider utils={MomentUtils}>
