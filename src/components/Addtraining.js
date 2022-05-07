@@ -13,6 +13,7 @@ import MomentUtils from '@date-io/moment';
 
 
 export default function Addtraining(props) {
+   const [newDate, handleNewDate] = useState(new Date());
    const [open, setOpen] = React.useState(false);
    const [training, setTraining] = React.useState({
       date: "", duration: "", activity: "", customer: props.customerId 
@@ -37,8 +38,6 @@ export default function Addtraining(props) {
 
    // Tämän kanssa oli isoja ongelmia saada datetimepicker toimimaan. Stackoverflowsta löysin onneksi apua ja ohjeet miten ratkaista ongelma.
    // Kun yrittää palauttaa ajankohdan, joka datetimepickerissä on defaultina, niin Date kohtaan traininglistissä tulostuu "Invalid Date", tähän en löytänyt ratkaisua.
-
-   const [newDate, handleNewDate] = useState(new Date());
      
    const approveDate = (date) => {
       handleNewDate(date);
