@@ -1,4 +1,4 @@
-import React, { useState, useEffect, gridRef } from 'react';
+import React, { useState, useEffect, gridRef, useCallback, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
@@ -9,7 +9,7 @@ import Addtraining from './Addtraining';
 
 export default function Customers() {
    const [customers, setCustomers] = useState([]);
-
+   const gridRef = useRef();
    useEffect(() => fetchCustomers(), []);
 
    const fetchCustomers = () => {
@@ -87,6 +87,12 @@ export default function Customers() {
       .catch(err => console.error(err))
    }
 
+   const onExportClick = useCallback(() => {
+      gridRef.current.api.exportDataAsCsv();
+   }, []); 
+      
+   
+
 
 
 
@@ -94,9 +100,12 @@ export default function Customers() {
    return(
       <div className="ag-theme-material" style={{height: '1100px', width: '100%', margin: 'auto'}}>
          <Addcustomer saveCustomer={saveCustomer}/>
+         <Button style={{margin: '10px'}} variant="outlined" onClick={onExportClick}>
+            Export
+         </Button>
          <AgGridReact
             ref={gridRef}
-            rowSelection='single'
+            rowSelection='single'      
             columnDefs={columns}
             rowData={customers}>
          </AgGridReact>

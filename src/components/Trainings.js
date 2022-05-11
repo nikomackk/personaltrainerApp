@@ -1,4 +1,4 @@
-import React, { useState, useEffect, gridRef } from 'react';
+import React, { useState, useEffect, gridRef, useCallback, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
@@ -6,7 +6,7 @@ import moment from 'moment';
 import Button from '@mui/material/Button';
 
 export default function Trainings() {
-
+   const gridRef = useRef();
    const [trainings, setTrainings] = useState([]);
 
    useEffect(() => fetchTrainings(), []);
@@ -38,10 +38,17 @@ export default function Trainings() {
 
    ]
 
+   const onExportClick = useCallback(() => {
+      gridRef.current.api.exportDataAsCsv();
+   }, []);
+
 
 
    return(
       <div className="ag-theme-material" style={{height: '700px', width: 'auto', margin: 'auto'}}>
+         <Button style={{margin: '10px'}} variant="outlined" onClick={onExportClick}>
+               Export
+         </Button>
       <AgGridReact
          ref={gridRef}
          rowSelection='single'
