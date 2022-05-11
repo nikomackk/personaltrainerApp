@@ -2,6 +2,7 @@ import './App.css';
 import Customers from './components/Customers';
 import Trainings from './components/Trainings';
 import TrainingCalendar from './components/TrainingCalendar';
+import Chart from './components/Chart';
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -23,10 +24,12 @@ function App() {
         <Tab value="one" label="Customerlist" />
         <Tab value="two" label="Traininglist" />
         <Tab value="three" label="Calendar" />
+        <Tab value="four" label="Chart" />
       </Tabs>
       {value === 'one' && <div><Customers/></div>}
       {value === 'two' && <div><Trainings/></div>}
       {value === 'three' && <div><TrainingCalendar/></div>}
+      {value === 'four' && <div><Chart/></div>}
     </div>
   );
 }
