@@ -1,1 +1,1 @@
-The final task of a course. Personal-Trainer-App made with React.js for Front-End Programming course.
+The final task of Front-End Programming course at Haaga-Helia University of Applied Sciences.
